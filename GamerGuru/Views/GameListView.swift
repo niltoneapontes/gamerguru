@@ -45,9 +45,9 @@ struct GameListView: View {
                                         .frame(maxWidth: 54, maxHeight: 54)
                                 }.background(.purple)
                                 .cornerRadius(8.0)
-                                .padding(.trailing, 10)
+                                .padding(.leading, 10)
                                 
-                            }.padding(.horizontal, 30)
+                            }.padding(.horizontal, 18)
                                 .frame(maxWidth: .infinity, maxHeight: 64)
                         
                         
@@ -61,39 +61,37 @@ struct GameListView: View {
                             }
                         } else {
                             List(gameListViewModel.gamesList) { game in
-                                VStack(alignment: .center) {
+                                HStack(alignment: .center) {
                                     if (game.coverUrl != nil) {
                                         AsyncImage(url: URL(string: game.coverUrl!)) {
-                                            image in image.image?.resizable().aspectRatio(contentMode: .fit)
+                                            image in image.image?.resizable().aspectRatio(contentMode: .fit).frame(maxWidth: 120)
                                         }
                                     } else {
-                                        Image("placeholder").resizable().aspectRatio(contentMode: .fit)
+                                        Image("placeholder").resizable().aspectRatio(contentMode: .fit).frame(maxWidth: 120)
                                     }
-                                    Text(game.name ?? "Sem nome")
-                                        .font(.title)
-                                        .foregroundColor(.white)
-                                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                                        .multilineTextAlignment(.center)
-                                        .padding(8)
-                                    Button(action: {
-                                        print(game)
-                                        gameListViewModel.setSelectedGame(newValue: game)
-                                        self.showDetail = true
-                                    }) {
-                                        Text("See details")
-                                            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                                    VStack(alignment: .center) {
+                                        Text(game.name ?? "Sem nome")
                                             .font(.title2)
                                             .foregroundColor(.white)
-                                            .padding(8)
+                                            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
                                             .multilineTextAlignment(.center)
-                                    }
-                                    .frame(maxWidth: .infinity)
-                                    .background(.ultraThinMaterial)
-                                    .cornerRadius(8.0)
-                                    .sheet(isPresented: $showDetail, onDismiss: {
-                                        self.showDetail = false
-                                    }) {
-                                        GameDetailsView()
+                                        
+                                        Button(action: {
+                                            print(game)
+                                            gameListViewModel.setSelectedGame(newValue: game)
+                                            self.showDetail = true
+                                        }) {
+                                            Text("See details")
+                                                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                                                .font(.title2).bold()
+                                                .foregroundColor(.white)
+                                                .multilineTextAlignment(.center)
+                                        }
+                                        .frame(maxWidth: .infinity)  .sheet(isPresented: $showDetail, onDismiss: {
+                                            self.showDetail = false
+                                        }) {
+                                            GameDetailsView()
+                                        }
                                     }
                                 }.background(.ultraThinMaterial)
                                     .shadow(radius: 10)
@@ -101,7 +99,9 @@ struct GameListView: View {
                                     .cornerRadius(8.0)
                                     .listRowBackground(Color.clear)
                                     .listRowSeparator(.hidden)
+                                    .listRowInsets(EdgeInsets())
                             }.listRowSpacing(20.0)
+                                .listRowInsets(EdgeInsets())
                             .scrollContentBackground(.hidden)
                             .onAppear {
                                 if(searchText.isEmpty) {
@@ -109,7 +109,8 @@ struct GameListView: View {
                                 }
                             }
                         }
-                    }.padding(.top, 72)
+                    }
+                .padding(.top, 72)
                     .padding(.bottom, 20)
                 }.navigationBarBackButtonHidden(true)
                 .toolbar {
