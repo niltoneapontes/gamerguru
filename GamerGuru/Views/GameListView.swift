@@ -70,34 +70,27 @@ struct GameListView: View {
                                     } else {
                                         Image("placeholder").resizable().aspectRatio(contentMode: .fit).frame(maxWidth: 120)
                                     }
-                                    VStack(alignment: .center) {
-                                        Text(game.name ?? "Sem nome")
-                                            .font(.title2)
-                                            .foregroundColor(.white)
-                                            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                                            .multilineTextAlignment(.center)
-                                        
-                                        Button(action: {
-                                            print(game)
-                                            guard let gameToShow = game.name, let gameId = game.id else { return }
-                                            self.selectedGame = game
-                                            self.showDetail = true
-                                        }) {
+                                    NavigationLink(destination: GameDetailsView(game: game).environmentObject(gameListViewModel)) {
+                                        VStack(alignment: .center) {
+                                            Text(game.name ?? "Sem nome")
+                                                .font(.title2)
+                                                .foregroundColor(.white)
+                                                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                                                .multilineTextAlignment(.center)
+                                            
+                                            
                                             Text("Ver detalhes")
                                                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
                                                 .font(.title2).bold()
                                                 .foregroundColor(.white)
                                                 .multilineTextAlignment(.center)
-                                                .padding(.vertical, 4)
+                                            
+                                                .padding(.top, 4)
+                                                .frame(maxWidth: .infinity)
                                         }
-                                        .padding(.top, 4)
-                                        .frame(maxWidth: .infinity)
-                                        .sheet(isPresented: $showDetail, onDismiss: {
-                                            self.showDetail = false
-                                        }) {
-                                            GameDetailsView(game: selectedGame)
-                                        }
-                                    }
+                                    }.foregroundColor(.white)
+                                        .padding(.trailing, 16)
+                                        
                                 }.background(.ultraThinMaterial)
                                     .shadow(radius: 10)
                                     .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
