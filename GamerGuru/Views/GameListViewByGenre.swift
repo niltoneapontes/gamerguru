@@ -1,21 +1,22 @@
 //
-//  GameListView.swift
+//  GameListViewByGenre.swift
 //  GamerGuru
 //
-//  Created by Nilton Pontes on 02/10/24.
+//  Created by Nilton Pontes on 08/10/24.
 //
 
 import SwiftUI
 
-struct GameListView: View {
+struct GameListViewByGenre: View {
     @Environment(\.presentationMode) var presentationMode
 
     @EnvironmentObject var gameListViewModel: GameListViewModel
+    var genre: Genre
     @State private var searchText: String = ""
     @State private var showDetail: Bool = false
-    
-    @State private var selectedGame = Game(name: nil, id: nil, url: nil, screenshots: nil, summary: nil, platforms: nil, genres: nil)
 
+    @State private var selectedGame = Game(name: nil, id: nil, url: nil, screenshots: nil, summary: nil, platforms: nil, genres: nil)
+    
     var body: some View {
             ZStack {
                 Image("background")
@@ -25,7 +26,7 @@ struct GameListView: View {
                     .edgesIgnoringSafeArea(.all)
                 
                 VStack {
-                    Text("Lista de Jogos").font(.largeTitle).foregroundColor(.white)
+                    Text("Jogos - \(genre.name)").font(.largeTitle).foregroundColor(.white)
                         
                             HStack {
                                 TextField(
@@ -48,6 +49,7 @@ struct GameListView: View {
                                 }.background(.purple)
                                 .cornerRadius(8.0)
                                 .padding(.leading, 10)
+                                
                             }.padding(.horizontal, 18)
                                 .frame(maxWidth: .infinity, maxHeight: 64)
                         
@@ -56,7 +58,7 @@ struct GameListView: View {
                             ProgressView().progressViewStyle(CircularProgressViewStyle(tint: .white)).frame(maxWidth: .infinity, maxHeight: .infinity).controlSize(.large).task {
                                 do {
                                     if(searchText.isEmpty) {
-                                        gameListViewModel.getGameList()
+                                        gameListViewModel.getGameListByGenre(genre: genre)
                                     }
                                 }
                             }
@@ -88,9 +90,8 @@ struct GameListView: View {
                                                 .font(.title2).bold()
                                                 .foregroundColor(.white)
                                                 .multilineTextAlignment(.center)
-                                                .padding(.vertical, 4)
                                         }
-                                        .padding(.top, 4)
+                                        .padding(.vertical, 4)
                                         .frame(maxWidth: .infinity)
                                         .sheet(isPresented: $showDetail, onDismiss: {
                                             self.showDetail = false
@@ -110,7 +111,7 @@ struct GameListView: View {
                             .scrollContentBackground(.hidden)
                             .onAppear {
                                 if(searchText.isEmpty) {
-                                    gameListViewModel.getGameList()
+                                    gameListViewModel.getGameListByGenre(genre: genre)
                                 }
                             }
                         }
@@ -137,3 +138,4 @@ struct GameListView: View {
 #Preview {
     GameListViewModel_Preview.previews
 }
+

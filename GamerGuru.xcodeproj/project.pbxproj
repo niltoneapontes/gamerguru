@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		963CECF12CB6030E00C51BCE /* GameListViewModel_Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CECF02CB6030E00C51BCE /* GameListViewModel_Preview.swift */; };
+		963CECF52CB608EA00C51BCE /* GameListViewByGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963CECF42CB608EA00C51BCE /* GameListViewByGenre.swift */; };
 		96CF9C0C2CAC719200B64C9C /* GamerGuruApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CF9C0B2CAC719200B64C9C /* GamerGuruApp.swift */; };
 		96CF9C0E2CAC719200B64C9C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CF9C0D2CAC719200B64C9C /* ContentView.swift */; };
 		96CF9C102CAC719400B64C9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9C0F2CAC719400B64C9C /* Assets.xcassets */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		963CECF02CB6030E00C51BCE /* GameListViewModel_Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListViewModel_Preview.swift; sourceTree = "<group>"; };
+		963CECF42CB608EA00C51BCE /* GameListViewByGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListViewByGenre.swift; sourceTree = "<group>"; };
 		96CF9C082CAC719200B64C9C /* GamerGuru.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GamerGuru.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96CF9C0B2CAC719200B64C9C /* GamerGuruApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamerGuruApp.swift; sourceTree = "<group>"; };
 		96CF9C0D2CAC719200B64C9C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,6 +93,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		963CECEF2CB602FB00C51BCE /* PreviewContent */ = {
+			isa = PBXGroup;
+			children = (
+				963CECF02CB6030E00C51BCE /* GameListViewModel_Preview.swift */,
+			);
+			path = PreviewContent;
+			sourceTree = "<group>";
+		};
 		96CF9BFF2CAC719200B64C9C = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +124,7 @@
 		96CF9C0A2CAC719200B64C9C /* GamerGuru */ = {
 			isa = PBXGroup;
 			children = (
+				963CECEF2CB602FB00C51BCE /* PreviewContent */,
 				96E3062A2CAD936C0077221F /* Views */,
 				96CF9C382CAC80AC00B64C9C /* Models */,
 				96CF9C352CAC742700B64C9C /* ViewModels */,
@@ -174,6 +187,7 @@
 				96E3062B2CAD93830077221F /* GameListView.swift */,
 				96E3062F2CADC0FB0077221F /* GenresView.swift */,
 				96E306332CADDD7F0077221F /* GameDetailsView.swift */,
+				963CECF42CB608EA00C51BCE /* GameListViewByGenre.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,8 +325,10 @@
 				96E306322CADCBDD0077221F /* Genre.swift in Sources */,
 				96E306342CADDD7F0077221F /* GameDetailsView.swift in Sources */,
 				96CF9C0E2CAC719200B64C9C /* ContentView.swift in Sources */,
+				963CECF52CB608EA00C51BCE /* GameListViewByGenre.swift in Sources */,
 				96CF9C0C2CAC719200B64C9C /* GamerGuruApp.swift in Sources */,
 				96E306302CADC0FB0077221F /* GenresView.swift in Sources */,
+				963CECF12CB6030E00C51BCE /* GameListViewModel_Preview.swift in Sources */,
 				96E3062C2CAD93830077221F /* GameListView.swift in Sources */,
 				96E306362CADEFFA0077221F /* Platform.swift in Sources */,
 				96CF9C372CAC744400B64C9C /* GameListViewModel.swift in Sources */,
